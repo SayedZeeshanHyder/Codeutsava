@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "125053951590",
+    "project_id": "codeutsava-45dda",
+    "storage_bucket": "codeutsava-45dda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125053951590:android:9296102f356b038b6057a7",
+        "android_client_info": {
+          "package_name": "com.example.codeutsava"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBadjYGQFsSnfdD9Mchf0_cg4jZd25Je00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
