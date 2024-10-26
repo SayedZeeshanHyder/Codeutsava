@@ -1,6 +1,6 @@
+import 'package:codeutsava/Controller/LocationController.dart';
 import 'package:codeutsava/Screens/Games/GamesScreen.dart';
 import 'package:codeutsava/Screens/Health/healthscreen.dart';
-import 'package:codeutsava/Screens/HeartRate/HeartRateScreen.dart';
 import 'package:codeutsava/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,8 +15,17 @@ class NavigationScreen extends StatefulWidget {
 }
 
 class _NavigationScreenState extends State<NavigationScreen> {
+
+  final locationController = Get.put(LocationController(),);
+
   int currentIndex = 0;
   final SpeechToTextController speechToTextController = Get.put(SpeechToTextController(),);
+
+  @override
+  void initState() {
+    super.initState();
+    locationController.setUserLocation();
+  }
 
   @override
   Widget build(BuildContext context) {
