@@ -1,3 +1,4 @@
+import 'package:codeutsava/Screens/Games/GamesScreen.dart';
 import 'package:codeutsava/Screens/HeartRate/HeartRateScreen.dart';
 import 'package:codeutsava/colors.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   final List<Widget> pages = [
     HeartRateScreen(),
-    SizedBox(),
+    GamesScreen(),
     SizedBox(),
     SizedBox(),
   ];
@@ -47,6 +48,9 @@ class _NavigationScreenState extends State<NavigationScreen> {
               }
             }, icon: Icon(speechToTextController.speechEnabled.value ? Icons.stop:Icons.mic,),),
           ),),
+          IconButton(onPressed: (){
+
+          },icon: Icon(Icons.tv),),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
