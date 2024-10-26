@@ -41,7 +41,6 @@ class _RoadMapFlutterCrushState extends State<RoadMapFlutterCrush> {
           imageUrl: "assets/drawable/map_vertical.png",
           direction: Axis.vertical,
           reverseScrolling: true,
-          svgUrl: 'assets/svg/map_vertical.svg',
           points: points,
         ),
       ),
