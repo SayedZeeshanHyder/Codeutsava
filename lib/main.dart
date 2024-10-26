@@ -1,6 +1,7 @@
 import 'package:codeutsava/Screens/Auth/GoogleAuthScreen.dart';
 import 'package:codeutsava/Screens/NavigationScreen.dart';
 import 'package:codeutsava/Services/SharedPreferencesService.dart';
+import 'package:codeutsava/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,6 +24,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Codeutsava',
       theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          backgroundColor: mainColor,
+          foregroundColor: Colors.white,
+          titleTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 23)
+        ),
         useMaterial3: true,
       ),
       home: auth.currentUser !=null ? NavigationScreen() : GoogleAuthScreen(),

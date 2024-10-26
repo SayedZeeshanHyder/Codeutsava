@@ -12,11 +12,11 @@ class GamesScreen extends StatelessWidget {
     },
     {
       "name":"candyCrush",
-      "assetUrl":"assets/images/candycrushimg.jpeg",
+      "assetUrl":"assets/images/crossword.png",
       "navigateTo":RoadMapFlutterCrush(),
     },{
       "name":"candyCrush",
-      "assetUrl":"assets/images/candycrushimg.jpeg",
+      "assetUrl":"assets/images/sudoku.jpeg",
       "navigateTo":RoadMapFlutterCrush(),
     },{
       "name":"candyCrush",

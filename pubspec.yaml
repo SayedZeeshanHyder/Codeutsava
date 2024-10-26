@@ -79,6 +79,8 @@ flutter:
   assets:
     - assets/images/
     - assets/threed/
+    - assets/audios/
+    - assets/models/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

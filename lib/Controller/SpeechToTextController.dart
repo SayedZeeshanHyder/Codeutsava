@@ -1,5 +1,6 @@
 import 'package:codeutsava/Controller/bottomnavcontroller.dart';
 import 'package:codeutsava/Screens/Navigation/PathScreen.dart';
+import 'package:codeutsava/Services/AudioService.dart';
 import 'package:get/get.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
@@ -36,6 +37,7 @@ class SpeechToTextController extends GetxController{
     }else if(recognizedWord.value.toLowerCase().contains("home")){
       bottomNavController.currentIndex.value = 0;
     }
+    await AudioService.playAudio("audios/JiPapaFemale.mp3");
   }
 
   void onSpeechResult(SpeechRecognitionResult result) {
