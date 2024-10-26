@@ -2,6 +2,7 @@ import 'package:codeutsava/Controller/LocationController.dart';
 import 'package:codeutsava/Controller/bottomnavcontroller.dart';
 import 'package:codeutsava/Screens/Games/GamesScreen.dart';
 import 'package:codeutsava/Screens/Health/healthscreen.dart';
+import 'package:codeutsava/Screens/Movie/moviescreen.dart';
 import 'package:codeutsava/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -32,11 +33,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
   @override
   Widget build(BuildContext context) {
     final List<BottomNavigationBarItem> bottomNavItems = [
-      BottomNavigationBarItem(icon: Icon(Icons.home),label: "Item1",backgroundColor: mainColor,),
-      BottomNavigationBarItem(icon: Icon(Icons.home),label: "Item2",backgroundColor: mainColor),
+      BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home",backgroundColor: mainColor,),
+      BottomNavigationBarItem(icon: Icon(Icons.gamepad),label: "Games",backgroundColor: mainColor),
       BottomNavigationBarItem(icon: Icon(Icons.home,color: Colors.transparent,),label: "",),
-      BottomNavigationBarItem(icon: Icon(Icons.home),label: "Item4",backgroundColor: mainColor),
-      BottomNavigationBarItem(icon: Icon(Icons.home),label: "Item5",backgroundColor: mainColor),
+      BottomNavigationBarItem(icon: Icon(Icons.medical_information),label: "Health",backgroundColor: mainColor),
+      BottomNavigationBarItem(icon: Icon(Icons.person),label: "Profile",backgroundColor: mainColor),
     ];
     final List<Widget> pages = [
       SizedBox(),
@@ -52,7 +53,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
         Get.to(()=>PathScreen(),);
       },backgroundColor: Colors.white,foregroundColor: mainColor,child: Icon(Icons.navigation,),),
       appBar:AppBar(
+        title: Obx(()=> Text(bottomNavController.appBarTitle.value),),
         actions: [
+          IconButton(onPressed: (){
+            Get.to(()=>MoviesScreen(),);
+          },icon: Icon(Icons.tv),),
           Obx(()=> Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),),
@@ -67,9 +72,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
               }
             }, icon: Icon(speechToTextController.speechEnabled.value ? Icons.stop:Icons.mic,),),
           ),),
-          IconButton(onPressed: (){
-
-          },icon: Icon(Icons.tv),),
         ],
       ),
       bottomNavigationBar: Obx(
@@ -80,9 +82,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
           currentIndex: bottomNavController.currentIndex.value,
           onTap: (index){
             if(index!=2){
-              setState(() {
-                bottomNavController.currentIndex.value = index;
-              });
+              bottomNavController.changeIndex(index);
             }
           },
         ),
