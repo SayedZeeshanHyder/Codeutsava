@@ -1,10 +1,12 @@
+import 'package:codeutsava/Controller/LocationController.dart';
 import 'package:codeutsava/Screens/Games/GamesScreen.dart';
-import 'package:codeutsava/Screens/HeartRate/HeartRateScreen.dart';
+import 'package:codeutsava/Screens/Health/healthscreen.dart';
 import 'package:codeutsava/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../Controller/SpeechToTextController.dart';
+import 'Navigation/PathScreen.dart';
 
 class NavigationScreen extends StatefulWidget {
 
@@ -13,25 +15,38 @@ class NavigationScreen extends StatefulWidget {
 }
 
 class _NavigationScreenState extends State<NavigationScreen> {
-  final List<BottomNavigationBarItem> bottomNavItems = [
-    BottomNavigationBarItem(icon: Icon(Icons.home),label: "Item1",backgroundColor: mainColor,),
-    BottomNavigationBarItem(icon: Icon(Icons.home),label: "Item2",backgroundColor: mainColor),
-    BottomNavigationBarItem(icon: Icon(Icons.home),label: "Item3",backgroundColor: mainColor),
-    BottomNavigationBarItem(icon: Icon(Icons.home),label: "Item4",backgroundColor: mainColor),
-  ];
 
-  final List<Widget> pages = [
-    HeartRateScreen(),
-    GamesScreen(),
-    SizedBox(),
-    SizedBox(),
-  ];
+  final locationController = Get.put(LocationController(),);
+
   int currentIndex = 0;
   final SpeechToTextController speechToTextController = Get.put(SpeechToTextController(),);
 
   @override
+  void initState() {
+    super.initState();
+    locationController.setUserLocation();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final List<BottomNavigationBarItem> bottomNavItems = [
+      BottomNavigationBarItem(icon: Icon(Icons.home),label: "Item1",backgroundColor: mainColor,),
+      BottomNavigationBarItem(icon: Icon(Icons.home),label: "Item2",backgroundColor: mainColor),
+      BottomNavigationBarItem(icon: Icon(Icons.home,color: Colors.transparent,),label: "",),
+      BottomNavigationBarItem(icon: Icon(Icons.home),label: "Item4",backgroundColor: mainColor),
+      BottomNavigationBarItem(icon: Icon(Icons.home),label: "Item5",backgroundColor: mainColor),
+    ];
+    final List<Widget> pages = [
+      SizedBox(),
+      //HeartRateScreen(),
+      GamesScreen(),
+      SizedBox(),
+      HealthScreen(),
+      SizedBox(),
+    ];
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(onPressed: (){},backgroundColor: Colors.white,foregroundColor: mainColor,child: Icon(Icons.navigation,),),
       appBar:AppBar(
         actions: [
           Obx(()=> Container(
@@ -59,9 +74,14 @@ class _NavigationScreenState extends State<NavigationScreen> {
         unselectedItemColor: Colors.purple.shade300,
         currentIndex: currentIndex,
         onTap: (index){
-          setState(() {
-            currentIndex = index;
-          });
+          if(index!=2){
+            setState(() {
+              currentIndex = index;
+            });
+          }
+          else{
+            Get.to(()=>PathScreen(),transition: Transition.downToUp);
+          }
         },
       ),
       body: pages[currentIndex],
