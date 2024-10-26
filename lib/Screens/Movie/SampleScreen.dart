@@ -1,62 +1,64 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:fl_chart/fl_chart.dart';
 
-class HealthScreen extends StatelessWidget {
+class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildHealthSection(),
+            SizedBox(height: 20),
+            _buildGraphSection(),
+            SizedBox(height: 20),
+            _buildSectionCard(context, Icons.medical_services, 'Medical', 'Track your medical records', Colors.blue),
+            _buildSectionCard(context, Icons.calendar_today, 'Today\'s Schedule', 'Check your daily activities', Colors.orange),
+            _buildSectionCard(context, Icons.sports_esports, 'Games', 'Play brain games and puzzles', Colors.green),
+            _buildSectionCard(context, Icons.fitness_center, 'Exercise', 'Log your workouts and steps', Colors.red),
+            _buildSectionCard(context, Icons.restaurant, 'Nutrition', 'Track your meals and calories', Colors.purple),
+            _buildSectionCard(context, Icons.bedtime, 'Sleep', 'Monitor your sleep quality', Colors.indigo),
+          ],
+        ),
+      );
+  }
+
+  Widget _buildHealthSection() {
+    return Container(
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.blue[50],
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(color: Colors.blue.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 5)),
+        ],
+      ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 15,
+          Text(
+            'Health Overview',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),
           ),
-          _buildGraphSection(size),
-          SizedBox(
-            height: 15,
-          ),
-          _buildSectionCard(context, Icons.medical_services, 'Medical', 'Track your medical records', Colors.blue,size),
-          SizedBox(
-            height: 15,
-          ),
-          Container(width: size.width*0.9,child: Text("Suggested Foods (Calorie)",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,fontSize: 17.5),),),
-          Container(
-            margin: EdgeInsets.only(left: 5),
-            height: size.height*0.175,
-            child: ListView.builder(scrollDirection: Axis.horizontal,itemCount: 5,itemBuilder: (context,index){
-              return Container(
-                padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-                margin: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
-                width: size.width*0.6,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade200,
-                  boxShadow: [
-                    BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 5)),
-                  ],
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      width: size.width*0.2,
-                      color: Colors.pink,
-                    ),
-                  ],
-                ),
-              );
-            }),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildHealthMetric('Steps', '8,421', Icons.directions_walk, Colors.blue),
+              _buildHealthMetric('Heart Rate', '72 bpm', Icons.favorite, Colors.red),
+              _buildHealthMetric('Calories', '1,650 kcal', Icons.local_fire_department, Colors.orange),
+            ],
           ),
         ],
       ),
     );
   }
 
-  Widget _buildGraphSection(Size size) {
+  Widget _buildGraphSection() {
     return Container(
       padding: EdgeInsets.all(16),
-      margin: EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -149,13 +151,25 @@ class HealthScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionCard(BuildContext context, IconData icon, String title, String description, Color color,Size size) {
+  Widget _buildHealthMetric(String label, String value, IconData icon, Color color) {
+    return Column(
+      children: [
+        Icon(icon, size: 30, color: color),
+        SizedBox(height: 8),
+        Text(value, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
+        SizedBox(height: 4),
+        Text(label, style: TextStyle(color: Colors.grey)),
+      ],
+    );
+  }
+
+  Widget _buildSectionCard(BuildContext context, IconData icon, String title, String description, Color color) {
     return GestureDetector(
       onTap: () {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$title section tapped!')));
       },
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 15),
+        margin: EdgeInsets.symmetric(vertical: 10),
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.white,

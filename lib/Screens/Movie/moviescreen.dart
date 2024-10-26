@@ -1,4 +1,5 @@
 import 'package:codeutsava/Screens/Movie/NewsScreen.dart';
+import 'package:codeutsava/Screens/Movie/SampleScreen.dart';
 import 'package:flutter/material.dart';
 
 class MoviesScreen extends StatefulWidget {
@@ -47,7 +48,7 @@ class _MoviesScreenState extends State<MoviesScreen> with SingleTickerProviderSt
         controller: _tabController,
         children: [
           _buildMoviesList(context),
-          Center(child: Text('Recent', style: TextStyle(color: Colors.blue))),
+          DashboardScreen(),
           NewsScreen(),
         ],
       ),

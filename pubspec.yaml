@@ -52,6 +52,9 @@ dependencies:
   location: ^7.0.1
   model_viewer_plus: ^1.9.0
   geolocator: ^9.0.2
+  fl_chart: ^0.69.0
+  easy_localization: ^3.0.7
+  text_to_speech: ^0.2.3
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +84,7 @@ flutter:
     - assets/threed/
     - assets/audios/
     - assets/models/
+    - assets/translations/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

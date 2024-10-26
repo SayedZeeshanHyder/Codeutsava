@@ -3,7 +3,10 @@ import 'package:codeutsava/Controller/bottomnavcontroller.dart';
 import 'package:codeutsava/Screens/Games/GamesScreen.dart';
 import 'package:codeutsava/Screens/Health/healthscreen.dart';
 import 'package:codeutsava/Screens/Movie/moviescreen.dart';
+import 'package:codeutsava/Screens/Profile/profile.dart';
 import 'package:codeutsava/colors.dart';
+import 'package:codeutsava/main.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,6 +35,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print("Build Called");
     final List<BottomNavigationBarItem> bottomNavItems = [
       BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home",backgroundColor: mainColor,),
       BottomNavigationBarItem(icon: Icon(Icons.gamepad),label: "Games",backgroundColor: mainColor),
@@ -45,7 +49,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
       GamesScreen(),
       SizedBox(),
       HealthScreen(),
-      SizedBox(),
+      ProfileScreen(),
     ];
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -53,8 +57,13 @@ class _NavigationScreenState extends State<NavigationScreen> {
         Get.to(()=>PathScreen(),);
       },backgroundColor: Colors.white,foregroundColor: mainColor,child: Icon(Icons.navigation,),),
       appBar:AppBar(
-        title: Obx(()=> Text(bottomNavController.appBarTitle.value),),
+        title: Obx(()=> Text(bottomNavController.appBarTitle.value).tr(),),
         actions: [
+          TextButton(onPressed: (){
+            context.locale == Locale('en')
+                ? context.setLocale(Locale('hi'))
+                : context.setLocale(Locale('en'));
+          },child: Text("aa",style: TextStyle(color: Colors.white),).tr(),),
           IconButton(onPressed: (){
             Get.to(()=>MoviesScreen(),);
           },icon: Icon(Icons.tv),),
