@@ -31,18 +31,23 @@ class _HeartRateScreenState extends State<HeartRateScreen> {
             },
             onBPM: (value) => setState(() {
               bpmValue = value;
+              print("ZEEEEESHAN");
+              print(bpmValue);
             }),
           )
               : SizedBox(),
-          Center(
-            child: ElevatedButton.icon(
-              icon: Icon(Icons.favorite_rounded),
-              label: Text(isBPMEnabled
-                  ? "Stop measurement" : "Measure BPM"),
-              onPressed: () => setState(() =>
-              isBPMEnabled = !isBPMEnabled
+          Column(
+            children: [
+              ElevatedButton.icon(
+                icon: Icon(Icons.favorite_rounded),
+                label: Text(isBPMEnabled
+                    ? "Stop measurement" : "Measure BPM"),
+                onPressed: () => setState(() =>
+                isBPMEnabled = !isBPMEnabled
+                ),
               ),
-            ),
+              Text(bpmValue.toString(),),
+            ],
           ),
         ],
       ),

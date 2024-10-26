@@ -15,7 +15,7 @@ class SpeechToTextController extends GetxController{
   startListening() async {
     print("Started Listening");
     recognizedWord.value = "";
-    await _speechToText.listen(onResult: onSpeechResult,pauseFor: Duration(seconds: 5),);
+    await _speechToText.listen(onResult: onSpeechResult,);
   }
 
   stopListening() async {
