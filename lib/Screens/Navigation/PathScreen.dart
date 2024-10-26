@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:codeutsava/Controller/LocationController.dart';
@@ -13,10 +14,24 @@ class PathScreen extends StatefulWidget {
 
 class _PathScreenState extends State<PathScreen> {
 
+  bool shouldSetState = true;
+
   @override
   void initState() {
     super.initState();
-    print("Inside");
+    Timer.periodic(Duration(seconds: 10), (val)async{
+      if(shouldSetState) {
+        locationController.setUserLocation();
+        print("Longitude = ${locationController.longitude}");
+        setState(() {});
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    shouldSetState = false;
   }
 
   final locationController = Get.put(LocationController(),);
@@ -26,10 +41,26 @@ class _PathScreenState extends State<PathScreen> {
     double bearing = calculateBearing(locationController.latitude.value, locationController.longitude.value, 10.0, 10.0);
     double rotationY = -bearing * (pi / 180);
 
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: ModelViewer(
-        src: 'assets/threed/scene.gltf',
-        cameraOrbit: '${rotationY.toStringAsFixed(2)}deg 0deg 1.0m',
+      body: Stack(
+        children: [
+          Positioned(
+            bottom: 0,
+            child: Container(
+              height: 150,
+              width: size.width,
+              child: ModelViewer(
+                alt: 'A 3D model of an astronaut',
+                src: 'assets/threed/direction_arrow.glb',
+                cameraOrbit: '${rotationY.toStringAsFixed(2)}deg 0deg 1.0m',
+              ),
+            ),
+          ),
+          Center(
+            child: Text(locationController.longitude.value.toString()),
+          ),
+        ],
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:codeutsava/Controller/LocationController.dart';
+import 'package:codeutsava/Controller/bottomnavcontroller.dart';
 import 'package:codeutsava/Screens/Games/GamesScreen.dart';
 import 'package:codeutsava/Screens/Health/healthscreen.dart';
 import 'package:codeutsava/colors.dart';
@@ -16,6 +17,7 @@ class NavigationScreen extends StatefulWidget {
 
 class _NavigationScreenState extends State<NavigationScreen> {
 
+  final bottomNavController = Get.put(BottomNavController(),);
   final locationController = Get.put(LocationController(),);
 
   int currentIndex = 0;
@@ -46,7 +48,9 @@ class _NavigationScreenState extends State<NavigationScreen> {
     ];
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(onPressed: (){},backgroundColor: Colors.white,foregroundColor: mainColor,child: Icon(Icons.navigation,),),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        Get.to(()=>PathScreen(),);
+      },backgroundColor: Colors.white,foregroundColor: mainColor,child: Icon(Icons.navigation,),),
       appBar:AppBar(
         actions: [
           Obx(()=> Container(
@@ -68,23 +72,22 @@ class _NavigationScreenState extends State<NavigationScreen> {
           },icon: Icon(Icons.tv),),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: bottomNavItems,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.purple.shade300,
-        currentIndex: currentIndex,
-        onTap: (index){
-          if(index!=2){
-            setState(() {
-              currentIndex = index;
-            });
-          }
-          else{
-            Get.to(()=>PathScreen(),transition: Transition.downToUp);
-          }
-        },
+      bottomNavigationBar: Obx(
+        ()=> BottomNavigationBar(
+          items: bottomNavItems,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.blue.shade200,
+          currentIndex: bottomNavController.currentIndex.value,
+          onTap: (index){
+            if(index!=2){
+              setState(() {
+                bottomNavController.currentIndex.value = index;
+              });
+            }
+          },
+        ),
       ),
-      body: pages[currentIndex],
+      body: Obx(()=> pages[bottomNavController.currentIndex.value]),
     );
   }
 }
