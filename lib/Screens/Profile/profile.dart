@@ -1,5 +1,6 @@
-import 'package:codeutsava/colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -16,17 +17,18 @@ class ProfileScreen extends StatelessWidget {
               height: 50,
             ),
             CircleAvatar(
+              backgroundImage: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnlkoa53zZB468uxslQjXZtrnqUZpa04vaVg&s"),
               radius: 85,
             ),
             SizedBox(
               height: 10,
             ),
-            Text("Sunil Pal",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,fontSize: 23,color: Colors.grey.shade800),),
+            Text(context.locale == Locale("en") ? "Sunil Pal" : "सुनिल पाल",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,fontSize: 23,color: Colors.grey.shade800),),
             Text("sunil27Pal@gmail.com",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Colors.grey.shade400),),
             SizedBox(
               height: 25,
             ),
-            _buildHealthSection(size),
+            _buildHealthSection(size,context),
             SizedBox(
               height: 15,
             ),
@@ -53,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
                           SizedBox(
                             height: 15,
                           ),
-                          Text("Emergency\nContacts",style: GoogleFonts.roboto(color: Colors.white,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
+                          Text(context.locale == Locale("en") ? "Emergency\nContacts" : "आपातकालीन\nसंपर्क",style: GoogleFonts.roboto(color: Colors.white,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
                         ],
                       ),
                     ),
@@ -78,7 +80,7 @@ class ProfileScreen extends StatelessWidget {
                         SizedBox(
                           height: 15,
                         ),
-                        Text("My Diary",style: GoogleFonts.roboto(color: Colors.white,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
+                        Text(context.locale == Locale("en") ? "My Diary" : "मेरी डायरी",style: GoogleFonts.roboto(color: Colors.white,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
                       ],
                     ),
                   ),
@@ -99,7 +101,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               child: ListTile(
                 titleTextStyle: GoogleFonts.roboto(color: Colors.white,fontWeight: FontWeight.bold),
-                title: Text("Logout"),
+                title: Text(context.locale == Locale("en") ? "Logout" : "लॉगआउट"),
                 leading: Icon(Icons.logout,color: Colors.white,),
               ),
             ),
@@ -112,7 +114,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHealthSection(Size size) {
+  Widget _buildHealthSection(Size size,context) {
     return Container(
       padding: EdgeInsets.all(16),
       margin: EdgeInsets.symmetric(horizontal: 20),
@@ -127,16 +129,16 @@ class ProfileScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Health Overview',
+            Get.locale == Locale("en") ? 'Health Overview' : "स्वास्थ्य अवलोकन",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),
           ),
           SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildHealthMetric('Steps', '8,421', Icons.directions_walk, Colors.blue),
-              _buildHealthMetric('Heart Rate', '72 bpm', Icons.favorite, Colors.red),
-              _buildHealthMetric('Calories', '1,650 kcal', Icons.local_fire_department, Colors.orange),
+              _buildHealthMetric(Get.locale == Locale("en") ? 'Steps' : "कदम", Get.locale == Locale("en") ? '8,421' : "८,४२१", Icons.directions_walk, Colors.blue),
+              _buildHealthMetric(Get.locale == Locale("en") ? 'Heart Rate' : "हृदय गति", Get.locale == Locale("en") ? "72 bpm" : '७२ बीपीएम', Icons.favorite, Colors.red),
+              _buildHealthMetric(Get.locale == Locale("en") ?'Calories' : "कैलोरी", Get.locale == Locale("en") ? "1,650 kcal" : '१,६५० किलोकैलोरी', Icons.local_fire_department, Colors.orange),
             ],
           ),
         ],

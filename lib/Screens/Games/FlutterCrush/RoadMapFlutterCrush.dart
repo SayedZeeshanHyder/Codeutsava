@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:game_levels_scrolling_map/game_levels_scrolling_map.dart';
-import 'package:game_levels_scrolling_map/model/point_model.dart';
 
 class RoadMapFlutterCrush extends StatefulWidget {
   @override
@@ -8,7 +6,7 @@ class RoadMapFlutterCrush extends StatefulWidget {
 }
 
 class _RoadMapFlutterCrushState extends State<RoadMapFlutterCrush> {
-  List<PointModel> points = [];
+  /*List<PointModel> points = [];
 
   @override
   void initState() {
@@ -39,14 +37,14 @@ class _RoadMapFlutterCrushState extends State<RoadMapFlutterCrush> {
       points.add(point);
     }
   }
-
+*/
   @override
   Widget build(BuildContext context) {
-    initializePoints();
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        child: GameLevelsScrollingMap.scrollable(
+        /*child: GameLevelsScrollingMap.scrollable(
           imageWidth: size.width*1.5, // Adjust width to fit properly
           imageHeight: size.height * 2,
           imageUrl: "assets/images/map_vertical.png",
@@ -58,7 +56,7 @@ class _RoadMapFlutterCrushState extends State<RoadMapFlutterCrush> {
           currentPointDeltaY: 100,
           x_values: [-10,-20,-30,-40,-50,-60,-70,-80,-90,-100,90,80,70,60,50,40,30,20,10,],
           y_values: [10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,]
-        ),
+        ),*/
       ),
     );
   }

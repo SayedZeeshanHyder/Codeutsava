@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class ViewMedicineScreen extends StatelessWidget {
 
-  final Uint8List? imageData;
+  final Uint8List imageData;
   ViewMedicineScreen({required this.imageData});
 
   @override
@@ -12,7 +12,7 @@ class ViewMedicineScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       backgroundColor: Colors.black,
-      body: Center(child: Image.memory(imageData!)),
+      body: Center(child: Image.memory(imageData)),
     );
   }
 }
