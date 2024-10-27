@@ -1,3 +1,4 @@
+import 'package:codeutsava/ApiKeys.dart';
 import 'package:codeutsava/Screens/Auth/GoogleAuthScreen.dart';
 import 'package:codeutsava/Screens/NavigationScreen.dart';
 import 'package:codeutsava/Services/SharedPreferencesService.dart';
@@ -6,11 +7,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Gemini.init(apiKey: geminiApiKey);
   await SharedPreferencesService.initialPreferences();
   await EasyLocalization.ensureInitialized();
   runApp(

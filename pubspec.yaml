@@ -54,7 +54,10 @@ dependencies:
   geolocator: ^9.0.2
   fl_chart: ^0.69.0
   easy_localization: ^3.0.7
-  text_to_speech: ^0.2.3
+  #text_to_speech: ^0.2.3
+  http: ^1.2.2
+  syncfusion_flutter_calendar: ^27.1.51
+  flutter_gemini: ^2.0.5
 
 dev_dependencies:
   flutter_test:
